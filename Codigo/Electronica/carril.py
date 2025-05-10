@@ -1,10 +1,10 @@
 import Jetson.GPIO as GPIO
 import time
 
-Q1 = 3
-Q2 = 5
-Q3 = 7
-Q4 = 8
+Q1 = 7
+Q2 = 11
+Q3 = 13
+Q4 = 12
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
@@ -29,15 +29,15 @@ def ejecutarCiclo(CW):
         else:
             paso = 3 - ind
             
-        #print(secuencia[paso])
+        print(secuencia[paso])
         
         #Envio de datos
         GPIO.output(Q1, GPIO.HIGH if secuencia[paso][0] == 1 else GPIO.LOW)
+        GPIO.output(Q1, GPIO.HIGH if secuencia[paso][1] == 1 else GPIO.LOW)
         GPIO.output(Q1, GPIO.HIGH if secuencia[paso][2] == 1 else GPIO.LOW)
         GPIO.output(Q1, GPIO.HIGH if secuencia[paso][3] == 1 else GPIO.LOW)
-        GPIO.output(Q1, GPIO.HIGH if secuencia[paso][4] == 1 else GPIO.LOW)
         
-        time.sleep_ms(1)
+        time.sleep(0.001)
 
 def mover1mmDerecha():
     
