@@ -21,7 +21,7 @@ GPIO.output(Q4, GPIO.LOW) """
 while(True):
 
     print("Mover derecha!")
-    for i in range(50):
+    for i in range(10):
         mover1mmDerecha()
 
     GPIO.output(Q1, GPIO.LOW)
@@ -33,7 +33,7 @@ while(True):
 
     print("Mover izquierda!")
 
-    for i in range(50):
+    for i in range(10):
         mover1mmIzquierda()
 
     GPIO.output(Q1, GPIO.LOW)

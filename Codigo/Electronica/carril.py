@@ -44,7 +44,7 @@ def ejecutarCiclo(CW):
 
 def mover1mmDerecha():
     
-    for i in range(4):
+    for i in range(25):
         ejecutarCiclo(CW = True) 
         #time.sleep(0.1)
         
@@ -54,7 +54,7 @@ def mover1mmDerecha():
     
 def mover1mmIzquierda():
     
-    for i in range(4):
+    for i in range(25):
         ejecutarCiclo(CW = False) 
         
     
