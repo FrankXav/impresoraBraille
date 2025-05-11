@@ -37,7 +37,7 @@ def ejecutarCiclo(CW):
         GPIO.output(Q3, GPIO.HIGH if secuencia[paso][2] == 1 else GPIO.LOW)
         GPIO.output(Q4, GPIO.HIGH if secuencia[paso][3] == 1 else GPIO.LOW)
         
-        time.sleep(0.0005)
+        time.sleep(0.001)
 
 
 def mover1mmDerecha():
