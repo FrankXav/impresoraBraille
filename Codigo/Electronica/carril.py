@@ -31,7 +31,7 @@ def ejecutarCiclo(CW):
         else:
             paso = 3 - ind
             
-        print(secuencia[paso])
+        #print(secuencia[paso])
         
         #Envio de datos
         GPIO.output(Q1, GPIO.HIGH if secuencia[paso][0] == 1 else GPIO.LOW)
