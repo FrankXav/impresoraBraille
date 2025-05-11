@@ -14,10 +14,12 @@ GPIO.setup(Q2, GPIO.OUT, initial=0)
 GPIO.setup(Q3, GPIO.OUT, initial=0)
 GPIO.setup(Q4, GPIO.OUT, initial=0)
 
-secuencia = [[1,0,1,0],
-             [1,0,0,1],
-             [0,1,0,1],
-             [0,1,1,0]]
+secuencia = [[1,0,0,1],
+             [1,0,1,0],
+             [0,1,1,0],
+             [0,1,0,1]]
+
+timeCiclo = 0.0005
 
 def ejecutarCiclo(CW):
     #print("Ejecutar paso")
@@ -29,7 +31,7 @@ def ejecutarCiclo(CW):
         else:
             paso = 3 - ind
             
-        #print(secuencia[paso])
+        print(secuencia[paso])
         
         #Envio de datos
         GPIO.output(Q1, GPIO.HIGH if secuencia[paso][0] == 1 else GPIO.LOW)
@@ -37,7 +39,7 @@ def ejecutarCiclo(CW):
         GPIO.output(Q3, GPIO.HIGH if secuencia[paso][2] == 1 else GPIO.LOW)
         GPIO.output(Q4, GPIO.HIGH if secuencia[paso][3] == 1 else GPIO.LOW)
         
-        time.sleep(0.0005)
+        time.sleep(timeCiclo)
 
 
 def mover1mmDerecha():
