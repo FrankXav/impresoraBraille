@@ -49,9 +49,6 @@ def mover1mmDerecha():
         #time.sleep(0.1)
         
     
-        
-    
-    
 def mover1mmIzquierda():
     
     for i in range(25):
