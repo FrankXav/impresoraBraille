@@ -1,3 +1,10 @@
+import sys
+import os
+
+#print("os.getcwd() desde imprimirTexto.py" + str(os.getcwd()))
+
+#sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from Electronica.carril import *
 
 IR = 16 
@@ -7,6 +14,8 @@ GPIO.setup(16, GPIO.IN)
 estado_IR = GPIO.input(IR)
 
 def iniciarCarril():
+
+    print("Iniciamos la posicion del carril")
 
     if(estado_IR == 1):
 
