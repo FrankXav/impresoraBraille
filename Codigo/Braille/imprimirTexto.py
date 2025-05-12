@@ -19,3 +19,9 @@ iniciarCarril()
 
 for caracter in arregloPalabra:
     impresionCaracter(caracter)
+
+GPIO.output(Q1, GPIO.LOW)
+GPIO.output(Q2, GPIO.LOW)
+GPIO.output(Q3, GPIO.LOW)
+GPIO.output(Q4, GPIO.LOW)
+
