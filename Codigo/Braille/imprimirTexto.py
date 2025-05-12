@@ -1,9 +1,11 @@
 import sys
 import os
 
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from Braille.tansBraille import *
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 
 texto = sys.argv[1]
 
