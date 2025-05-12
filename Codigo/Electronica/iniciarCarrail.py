@@ -1,4 +1,4 @@
-from carril import *
+from Electronica.carril import *
 
 IR = 16 
 
@@ -6,26 +6,28 @@ GPIO.setup(16, GPIO.IN)
 
 estado_IR = GPIO.input(IR)
 
-if(estado_IR == 1):
+def iniciarCarril():
 
-    while(GPIO.input(IR) == 1):
+    if(estado_IR == 1):
 
-        mover1mmDerecha()
+        while(GPIO.input(IR) == 1):
 
-    for i in range(10):
-        mover1mmDerecha()
+            mover1mmDerecha()
 
-    while(GPIO.input(IR) == 0):
+        for i in range(5):
+            mover1mmDerecha()
 
-        mover1mmIzquierda()
+        while(GPIO.input(IR) == 0):
 
-else:
+            mover1mmIzquierda()
 
-    while(GPIO.input(IR) == 0):
+    else:
 
-        mover1mmIzquierda()
+        while(GPIO.input(IR) == 0):
 
-GPIO.output(Q1, GPIO.LOW)
-GPIO.output(Q2, GPIO.LOW)
-GPIO.output(Q3, GPIO.LOW)
-GPIO.output(Q4, GPIO.LOW)
+            mover1mmIzquierda()
+
+    GPIO.output(Q1, GPIO.LOW)
+    GPIO.output(Q2, GPIO.LOW)
+    GPIO.output(Q3, GPIO.LOW)
+    GPIO.output(Q4, GPIO.LOW)

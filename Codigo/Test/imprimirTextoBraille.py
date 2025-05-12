@@ -1,8 +1,6 @@
-from Braille.tansBraille import *
+import subprocess
+import os
 
-texto = "a"
+print(os.getcwd)
 
-arregloBraille = transcripcionBraille(texto)
-
-print(arregloBraille)
-
+subprocess.run("python","Braille/imprimirTexto.py","oficina")
