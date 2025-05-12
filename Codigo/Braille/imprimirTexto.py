@@ -15,7 +15,7 @@ print("Palabra a imprimir: " + str(texto))
 
 arregloPalabra = transcripcionBraille(texto)
 
-#iniciarCarril()
+iniciarCarril()
 
 for caracter in arregloPalabra:
     impresionCaracter(caracter)

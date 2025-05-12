@@ -11,6 +11,8 @@ def impresionCaracter(arregloCaracter):
 
             if(columna == 0 and fila !=2):
                 print("Mover derecha")
+                mover1mmDerecha()
 
-            if(columna == 2 and fila !=2):
+            if(columna == 1 and fila !=2):
                 print("Mover Izquierda")
+                mover1mmIzquierda()
