@@ -1,6 +1,6 @@
 import subprocess
 import os
 
-print(os.getcwd)
+print(os.getcwd())
 
 subprocess.run("python","Braille/imprimirTexto.py","oficina")
