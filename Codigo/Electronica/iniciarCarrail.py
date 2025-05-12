@@ -1,4 +1,4 @@
-from Codigo.Electronica.carril import *
+from carril import *
 
 IR = 16 
 
