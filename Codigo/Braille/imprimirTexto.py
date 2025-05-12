@@ -1,7 +1,7 @@
 import sys
 import os
 
-print(f'os.getcwd() desde imprimirTexto.py {os.getcwd()}')
+print(f"os.getcwd() desde imprimirTexto.py {os.getcwd()}")
 
 # Añadir el directorio raíz al path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
