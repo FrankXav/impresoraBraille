@@ -7,7 +7,7 @@ import time
 modelo = whisper.load_model("small")
 
 duracion = 3  # segundos
-archivo_salida = "/home/jetson/Documents/grabacciones/grabacion.wav"
+archivo_salida = "/home/jetson/Documents/grabaciones/grabacion.wav"
 
 def reconocimientodeVoz():
 
