@@ -1,4 +1,4 @@
-from Whisper.ReconocimientoWhisper import *
+from Whisper.reconocimientoWhisper import *
 
 print("Proyecto Etiquedadora Braille")
 
