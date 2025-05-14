@@ -19,7 +19,7 @@ def impresionCaracter(arregloCaracter):
                 GPIO.output(Q2, GPIO.LOW)
                 GPIO.output(Q3, GPIO.LOW)
                 GPIO.output(Q4, GPIO.LOW)
-                time.sleep(0.5)
+                time.sleep(0.3)
                 GPIO.output(actuador, GPIO.HIGH)
 
             if(columna == 0 and fila !=2):
