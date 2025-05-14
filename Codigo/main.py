@@ -4,11 +4,13 @@ print("Proyecto Etiquedadora Braille")
 
 #Ejecutamos función de reconocimiento
 
-palabraReconocida = reconocimientodeVoz()
+while(True):
 
-if(palabraReconocida != ""):
+    palabraReconocida = reconocimientodeVoz()
 
-    subprocess.run(["python", "Braille/imprimirTexto.py", palabraReconocida])
+    if(palabraReconocida != ""):
 
-else:
-    print("Ocurrio un error en el reconocimiento")
+        subprocess.run(["python", "Braille/imprimirTexto.py", palabraReconocida])
+
+    else:
+        print("Ocurrio un error en el reconocimiento")

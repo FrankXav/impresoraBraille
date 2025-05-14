@@ -20,6 +20,8 @@ def reconocimientodeVoz():
 
     print("Grabando...")
 
+    confirmacion = input("Presione para grabar")
+
     subprocess.run(["arecord", "-D", "plughw:2,0", "-f", "S16_LE", "-r", "48000", "-c", "2","-d", str(duracion),archivo_salida])
 
     subprocess.run(["aplay", "-D", "hw:2,0", archivo_salida])
