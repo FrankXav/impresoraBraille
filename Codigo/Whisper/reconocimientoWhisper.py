@@ -1,8 +1,10 @@
+# coding: utf-8
 import subprocess
 import os
 import sys
 import whisper
 import time
+
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
