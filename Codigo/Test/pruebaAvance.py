@@ -1,0 +1,26 @@
+from Electronica.avanceCinta import *
+
+while(True):
+
+    print("Mover derecha!")
+    for i in range(10):
+        mover1mmDerechaAvance()
+
+    GPIO.output(C1, GPIO.LOW)
+    GPIO.output(C2, GPIO.LOW)
+    GPIO.output(C3, GPIO.LOW)
+    GPIO.output(C4, GPIO.LOW)
+
+    time.sleep(2)
+
+    print("Mover izquierda!")
+
+    for i in range(10):
+        mover1mmIzquierdaAvance()
+
+    GPIO.output(C1, GPIO.LOW)
+    GPIO.output(C2, GPIO.LOW)
+    GPIO.output(C3, GPIO.LOW)
+    GPIO.output(C4, GPIO.LOW)
+
+    time.sleep(2)
