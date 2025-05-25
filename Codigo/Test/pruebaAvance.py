@@ -1,9 +1,7 @@
 import sys
 import os
 
-from Electronica.avanceCinta import *
-
-print("os.getcwd() desde imprimirTexto.py" + str(os.getcwd()))
+from Codigo.Electronica.avanceCinta import *
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
