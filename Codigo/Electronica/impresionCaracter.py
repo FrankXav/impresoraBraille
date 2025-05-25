@@ -1,3 +1,6 @@
+import Jetson.GPIO as GPIO
+import time
+
 from Electronica.carril import *
 
 actuador = 18
@@ -25,7 +28,11 @@ def impresionCaracter(arregloCaracter):
             if(columna == 0 and fila !=2):
                 print("Mover derecha")
                 mover1mmDerecha()
+                mover1mmDerecha()
+                time.sleep(2)
 
             if(columna == 1 and fila !=2):
                 print("Mover Izquierda")
                 mover1mmIzquierda()
+                mover1mmIzquierda()
+                time.sleep(2)

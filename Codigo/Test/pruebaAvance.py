@@ -5,6 +5,11 @@ from Codigo.Electronica.avanceCinta import *
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+GPIO.output(C1, GPIO.LOW)
+GPIO.output(C2, GPIO.LOW)
+GPIO.output(C3, GPIO.LOW)
+GPIO.output(C4, GPIO.LOW)
+
 while(True):
 
     print("Mover derecha!")

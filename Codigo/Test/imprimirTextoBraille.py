@@ -4,4 +4,4 @@ import sys
 
 print("os.getcwd() desde imprimirTexto.py" + str(os.getcwd()))
 
-subprocess.run(["python", "Braille/imprimirTexto.py", "oficina"])
+subprocess.run(["python3.6", "Braille/imprimirTexto.py", "<<<<<"])
