@@ -16,7 +16,7 @@ def impresionCaracter(arregloCaracter):
             print("valor: " + str(arregloCaracter[columna][fila]) + " columna: " + str(columna) + " fila: " + str(fila))
 
             if(arregloCaracter[columna][fila] == 1):
-                print("Activar actuador")
+                #print("Activar actuador")
                 """ GPIO.output(actuador, GPIO.LOW)
                 GPIO.output(Q1, GPIO.LOW)
                 GPIO.output(Q2, GPIO.LOW)
@@ -26,13 +26,14 @@ def impresionCaracter(arregloCaracter):
                 GPIO.output(actuador, GPIO.HIGH) """
 
             if(columna == 0 and fila !=2):
-                print("Mover derecha")
-                mover1mmDerecha()
-                mover1mmDerecha()
+                #print("Mover Izquierda")
+                mover1mmIzquierda()
+                mover1mmIzquierda()
                 time.sleep(2)
 
             if(columna == 1 and fila !=2):
-                print("Mover Izquierda")
-                mover1mmIzquierda()
-                mover1mmIzquierda()
+                #print("Mover derecha")
+                mover1mmDerecha()
+                mover1mmDerecha()
                 time.sleep(2)
+                

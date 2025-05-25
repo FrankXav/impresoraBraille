@@ -17,6 +17,11 @@ arregloPalabra = transcripcionBraille(texto)
 
 iniciarCarril()
 
+print("Posicion Inicial")
+time.sleep(5)
+
+print("Comenzar impresion!!!")
+
 for caracter in arregloPalabra:
     impresionCaracter(caracter)
 
