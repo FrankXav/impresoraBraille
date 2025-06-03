@@ -7,6 +7,8 @@ subprocess.run(["tmux", "send-keys", "-t", "impresorabraille", "aplay ../../Audi
 
 from Whisper.reconocimientoWhisper import *
 
+subprocess.run(["tmux", "send-keys", "-t", "impresorabraille", "aplay ../../Audios/Preparado.wav", "ENTER"])
+
 
 """ while(True):
 
