@@ -1,11 +1,18 @@
-from Whisper.reconocimientoWhisper import *
+print("Proyecto Etiquedadora Braille")
+
 from Arranque.IniciarTerminal import *
 
-print("Proyecto Etiquedadora Braille")
+subprocess.run(["tmux", "send-keys", "-t", "impresorabraille", "aplay ../../Audios/Introduccion.wav", "ENTER"])
+
+
+from Whisper.reconocimientoWhisper import *
+
+
+
 
 #Ejecutamos función de reconocimiento
 
-Introduccion()
+
 
 """ while(True):
 
