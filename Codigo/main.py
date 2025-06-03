@@ -1,6 +1,7 @@
 import subprocess
 import os
 import signal
+import time
 
 print("Proyecto Etiquedadora Braille")
 
@@ -10,11 +11,15 @@ print("os.getcwd() desde imprimirTexto.py" + str(os.getcwd()))
 
 #subprocess.run(["tmux", "send-keys", "-t", "impresorabraille", "aplay ../../Audios/Introduccion.wav", "ENTER"])
 
-inicioFalso = subprocess.Popen(["arecord", "-D", "plughw:2,0", "-f", "S16_LE", "-r", "48000", "-c", "2","-d", "1", "falso.mp3"])
+time.sleep(5)
+
+""" inicioFalso = subprocess.Popen(["arecord", "-D", "plughw:2,0", "-f", "S16_LE", "-r", "48000", "-c", "2","-d", "1", "falso.mp3"])
 
 inicioFalso.send_signal(signal.SIGINT)
 
-inicioFalso.wait()
+inicioFalso.wait() """
+
+subprocess.run(["aplay", "-l"])
 
 subprocess.run(["aplay", "../../Audios/Introduccion.wav"])
 
