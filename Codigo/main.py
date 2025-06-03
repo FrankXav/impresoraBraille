@@ -1,10 +1,13 @@
 from Whisper.reconocimientoWhisper import *
+from Arranque.IniciarTerminal import *
 
 print("Proyecto Etiquedadora Braille")
 
 #Ejecutamos función de reconocimiento
 
-while(True):
+Introduccion()
+
+""" while(True):
 
     palabraReconocida = reconocimientodeVoz()
 
@@ -13,4 +16,4 @@ while(True):
         subprocess.run(["python", "Braille/imprimirTexto.py", palabraReconocida])
 
     else:
-        print("Ocurrio un error en el reconocimiento")
+        print("Ocurrio un error en el reconocimiento") """
