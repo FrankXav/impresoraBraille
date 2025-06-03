@@ -10,9 +10,11 @@ print("os.getcwd() desde imprimirTexto.py" + str(os.getcwd()))
 
 #subprocess.run(["tmux", "send-keys", "-t", "impresorabraille", "aplay ../../Audios/Introduccion.wav", "ENTER"])
 
-inicioFalso = subprocess.run(["aplay", "../../Audios/Introduccion.wav"])
+inicioFalso = subprocess.Popen(["arecord", "-D", "plughw:2,0", "-f", "S16_LE", "-r", "48000", "-c", "2","-d", 1, "falso.mp3"])
 
 inicioFalso.send_signal(signal.SIGINT)
+
+inicioFalso.wait()
 
 subprocess.run(["aplay", "../../Audios/Introduccion.wav"])
 
