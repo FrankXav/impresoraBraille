@@ -8,12 +8,6 @@ subprocess.run(["tmux", "send-keys", "-t", "impresorabraille", "aplay ../../Audi
 from Whisper.reconocimientoWhisper import *
 
 
-
-
-#Ejecutamos función de reconocimiento
-
-
-
 """ while(True):
 
     palabraReconocida = reconocimientodeVoz()
