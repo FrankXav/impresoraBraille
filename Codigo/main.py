@@ -14,7 +14,7 @@ subprocess.run(["aplay", "../../Audios/Introduccion.wav"])
 from Whisper.reconocimientoWhisper import *
 
 #subprocess.run(["tmux", "send-keys", "-t", "impresorabraille", "aplay ../../Audios/Preparado.wav", "ENTER"])
-subprocess.run(["aplay", "../../Audios/Introduccion.wav"])
+subprocess.run(["aplay", "../../Audios/Preparado.wav"])
 
 
 while(True):
