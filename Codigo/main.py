@@ -10,7 +10,7 @@ from Whisper.reconocimientoWhisper import *
 subprocess.run(["tmux", "send-keys", "-t", "impresorabraille", "aplay ../../Audios/Preparado.wav", "ENTER"])
 
 
-while(True):
+""" while(True):
 
     palabraReconocida = reconocimientodeVoz()
 
@@ -20,4 +20,4 @@ while(True):
         print("Se imprimira la palabra: " + str(palabraReconocida))
 
     else:
-        print("Ocurrio un error en el reconocimiento")
+        print("Ocurrio un error en el reconocimiento") """
