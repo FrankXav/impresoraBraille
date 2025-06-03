@@ -1,4 +1,9 @@
+import subprocess
+import os
+
 print("Proyecto Etiquedadora Braille")
+
+print("os.getcwd() desde imprimirTexto.py" + str(os.getcwd()))
 
 #from Arranque.IniciarTerminal import *
 
