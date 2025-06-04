@@ -3,7 +3,6 @@ import os
 import signal
 import time
 
-from Whisper.reconocimientoWhisper import *
 
 print("Proyecto Etiquedadora Braille")
 
@@ -24,6 +23,9 @@ inicioFalso.wait()
 
 subprocess.run(["aplay", "../../Audios/Introduccion.wav"])
 
+
+from Whisper.reconocimientoWhisper import *
+
 #subprocess.run(["tmux", "send-keys", "-t", "impresorabraille", "aplay ../../Audios/Preparado.wav", "ENTER"])
 subprocess.run(["aplay", "../../Audios/Preparado.wav"])
 
@@ -34,7 +36,7 @@ while(True):
 
     if(palabraReconocida != ""):
 
-        #subprocess.run(["python", "Braille/imprimirTexto.py", palabraReconocida])
+        subprocess.run(["python", "Braille/imprimirTexto.py", palabraReconocida])
         print("Se imprimira la palabra: " + str(palabraReconocida))
 
     else:
