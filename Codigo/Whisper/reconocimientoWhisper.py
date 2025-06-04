@@ -49,6 +49,8 @@ def reconocimientodeVoz():
 
         #Se pregunta se la palabra reconocida es la que quiere imprimir
 
+        bancoEscritorio = ['Esescritorio', ]
+
         #Se devuelve la palabra
     
     except:

@@ -3,6 +3,8 @@ import os
 import signal
 import time
 
+from Whisper.reconocimientoWhisper import *
+
 print("Proyecto Etiquedadora Braille")
 
 print("os.getcwd() desde imprimirTexto.py" + str(os.getcwd()))
@@ -13,18 +15,14 @@ print("os.getcwd() desde imprimirTexto.py" + str(os.getcwd()))
 
 time.sleep(5)
 
-""" inicioFalso = subprocess.Popen(["arecord", "-D", "plughw:2,0", "-f", "S16_LE", "-r", "48000", "-c", "2","-d", "1", "falso.mp3"])
+inicioFalso = subprocess.Popen(["arecord", "-D", "plughw:2,0", "-f", "S16_LE", "-r", "48000", "-c", "2","-d", "1", "falso.mp3"])
 
 inicioFalso.send_signal(signal.SIGINT)
 
-inicioFalso.wait() """
+inicioFalso.wait()
 
-subprocess.run(["aplay", "-l"])
 
 subprocess.run(["aplay", "../../Audios/Introduccion.wav"])
-
-
-from Whisper.reconocimientoWhisper import *
 
 #subprocess.run(["tmux", "send-keys", "-t", "impresorabraille", "aplay ../../Audios/Preparado.wav", "ENTER"])
 subprocess.run(["aplay", "../../Audios/Preparado.wav"])
