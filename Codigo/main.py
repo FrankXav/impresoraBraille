@@ -21,13 +21,13 @@ inicioFalso.send_signal(signal.SIGINT)
 inicioFalso.wait()
 
 
-subprocess.run(["aplay", "../../Audios/Introduccion.wav"])
+subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Introduccion.wav"])
 
 
 from Whisper.reconocimientoWhisper import *
 
 #subprocess.run(["tmux", "send-keys", "-t", "impresorabraille", "aplay ../../Audios/Preparado.wav", "ENTER"])
-subprocess.run(["aplay", "../../Audios/Preparado.wav"])
+subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Preparado.wav"])
 
 
 while(True):
