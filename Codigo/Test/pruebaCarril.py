@@ -10,6 +10,11 @@ Q2 = 11
 Q3 = 13
 Q4 = 12
 
+GPIO.setup(Q1, GPIO.OUT, initial=0)
+GPIO.setup(Q2, GPIO.OUT, initial=0)
+GPIO.setup(Q3, GPIO.OUT, initial=0)
+GPIO.setup(Q4, GPIO.OUT, initial=0)
+
 secuencia = [[1,0,0,1],
              [1,0,1,0],
              [0,1,1,0],
