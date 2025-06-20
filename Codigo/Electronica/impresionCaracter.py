@@ -37,6 +37,8 @@ def impresionCaracter(arregloCaracter):
                 mover1mmDerecha()
                 mover1mmDerecha()
                 mover1mmDerecha()
+            
+            time.sleep(0.2)
 
         
         GPIO.output(Q1, GPIO.LOW)
