@@ -31,10 +31,12 @@ def impresionCaracter(arregloCaracter):
                 mover1mmIzquierda()
                 mover1mmIzquierda()
                 mover1mmIzquierda()
+                mover1mmIzquierda()
                 
 
             if(columna == 1 and fila !=2):
                 #print("Mover derecha")
+                mover1mmDerecha()
                 mover1mmDerecha()
                 mover1mmDerecha()
                 mover1mmDerecha()
