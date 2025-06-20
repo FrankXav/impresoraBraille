@@ -32,7 +32,9 @@ subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Preparado.wav"])
 
 while(True):
 
-    palabraReconocida = reconocimientodeVoz()
+    #palabraReconocida = reconocimientodeVoz()
+
+    palabraReconocida = "<<<<<"
 
     if(palabraReconocida != ""):
 
