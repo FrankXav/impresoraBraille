@@ -1,8 +1,6 @@
 import Jetson.GPIO as GPIO
 import time
 
-from Electronica.carril import *
-from Electronica.avanceCinta import *
 
 botonImpresion = 26
 
