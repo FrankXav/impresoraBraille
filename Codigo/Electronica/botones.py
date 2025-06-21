@@ -20,7 +20,15 @@ GPIO.setup(botonImpresion, GPIO.IN)
 
 estado_BotImp = GPIO.input(botonImpresion)
 
+GPIO.output(Q1, GPIO.LOW)
+GPIO.output(Q2, GPIO.LOW)
+GPIO.output(Q3, GPIO.LOW)
+GPIO.output(Q4, GPIO.LOW)
 
+GPIO.output(C1, GPIO.LOW)
+GPIO.output(C2, GPIO.LOW)
+GPIO.output(C3, GPIO.LOW)
+GPIO.output(C4, GPIO.LOW)
 
 while(GPIO.input(botonImpresion) == 1):
     estado_BotImp = GPIO.input(botonImpresion)
