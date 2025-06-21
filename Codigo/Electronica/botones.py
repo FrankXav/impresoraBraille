@@ -6,6 +6,8 @@ GPIO.setmode(GPIO.BOARD)
 
 botonImpresion = 26
 
+botonIns = 29
+
 GPIO.setup(botonImpresion, GPIO.IN)
 
 estado_BotImp = GPIO.input(botonImpresion)
