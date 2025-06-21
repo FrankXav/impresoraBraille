@@ -1,6 +1,8 @@
 import Jetson.GPIO as GPIO
 import time
 
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
 
 botonImpresion = 26
 
