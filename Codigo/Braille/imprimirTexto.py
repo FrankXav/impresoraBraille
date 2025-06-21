@@ -25,8 +25,14 @@ print("Comenzar impresion!!!")
 for caracter in arregloPalabra:
     impresionCaracter(caracter)
 
-for i in range(10):
+for i in range(20):
+    print("Mover Avance")
     mover1mmDerechaAvance()
+
+GPIO.output(C1, GPIO.LOW)
+GPIO.output(C2, GPIO.LOW)
+GPIO.output(C3, GPIO.LOW)
+GPIO.output(C4, GPIO.LOW)
 
 GPIO.output(Q1, GPIO.LOW)
 GPIO.output(Q2, GPIO.LOW)
