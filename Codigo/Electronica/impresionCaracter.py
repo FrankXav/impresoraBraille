@@ -18,7 +18,8 @@ def impresionCaracter(arregloCaracter):
 
             if(arregloCaracter[columna][fila] == 1):
                 #print("Activar actuador")
-                #GPIO.output(actuador, GPIO.LOW)
+                GPIO.output(actuador, GPIO.LOW)
+                time.sleep(0.1)
                 GPIO.setup(actuador, GPIO.IN)
                 GPIO.output(Q1, GPIO.LOW)
                 GPIO.output(Q2, GPIO.LOW)
