@@ -34,11 +34,11 @@ def ejecutarCicloAvance(CW):
 def mover1mmDerechaAvance():
     
     for i in range(1):
-        ejecutarCicloAvance(CW = True) 
+        ejecutarCicloAvance(CW = False) 
         #time.sleep(0.1)
         
     
 def mover1mmIzquierdaAvance():
     
     for i in range(1):
-        ejecutarCicloAvance(CW = False) 
+        ejecutarCicloAvance(CW = True) 
