@@ -100,7 +100,7 @@ def reconocimientodeVoz():
                     print("Palabra encontrada: " + palabraEncontrada )
                     if(palabraEncontrada != ""):
                         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Lapalabraes.wav"])
-                        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/"+palabraEncontrada+".wav"])
+                        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/palabras/"+palabraEncontrada+".wav"])
 
                         #Verificacion de la palabra
                         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Verificacion.wav"])
