@@ -13,13 +13,15 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from Electronica.carril import *
 from Electronica.avanceCinta import *
 
-botonImpresion = 26
-botonIns = 29
+botonImpresion = 29
+botonIns = 26
 
 GPIO.setup(botonImpresion, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(botonIns, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 presionado = False
+
+ejeInstrucciones = False
 
 GPIO.output(Q1, GPIO.LOW)
 GPIO.output(Q2, GPIO.LOW)
@@ -41,16 +43,23 @@ def IniciarImpresion(channel):
     return
 
 def DecirInstructivo(channel):
-    subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Seccion1.wav"])
-    time.sleep(1)
-    subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/listapalabras.wav"])
-    time.sleep(1)
-    subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Seccion2.wav"])
-    time.sleep(1)
-    subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/FinalInst.wav"])
+    global ejeInstrucciones
+    
 
-GPIO.add_event_detect(botonImpresion, GPIO.FALLING, callback=IniciarImpresion, bouncetime=300)
-GPIO.add_event_detect(botonIns, GPIO.FALLING, callback=DecirInstructivo, bouncetime=300)
+    if( not ejeInstrucciones):
+        ejeInstrucciones = True
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Seccion1.wav"])
+        time.sleep(1)
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/listapalabras.wav"])
+        time.sleep(1)
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Seccion2.wav"])
+        time.sleep(1)
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/FinalInst.wav"])
+        ejeInstrucciones = False
+
+
+GPIO.add_event_detect(botonImpresion, GPIO.FALLING, callback=IniciarImpresion, bouncetime=500)
+GPIO.add_event_detect(botonIns, GPIO.FALLING, callback=DecirInstructivo, bouncetime=500)
 
 
 while (not presionado):
