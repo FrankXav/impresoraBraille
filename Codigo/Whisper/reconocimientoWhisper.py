@@ -128,6 +128,11 @@ def reconocimientodeVoz():
                             intentos = intentos + 1
                             if(intentos < 3):
                                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/RepetirReconocimiento.wav"])
+
+                    else:
+                        intentos = intentos + 1
+                        if(intentos < 3):
+                            subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/RepetirReconocimiento.wav"])
                     
 
                 #Algoritmo para encontrar la palabra con mayor simulitud a las opciones de reconocimiento
