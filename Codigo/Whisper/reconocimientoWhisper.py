@@ -121,7 +121,7 @@ def reconocimientodeVoz():
 
                         print("palabraReconocida: " + palabraReconocida)
 
-                        if(palabraReconocida == "si"):
+                        if(palabraReconocida == "si" or palabraReconocida == "sí"):
                             return(palabraEncontrada)
                         
                         else:
