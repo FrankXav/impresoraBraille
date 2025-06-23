@@ -154,7 +154,10 @@ def reconocimientodeVoz():
             
         
         except:
-            print("Error en el reconocimiento")
+            subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/ErrorReconocimiento.wav"])
+
+    subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/ErrorReconocimiento.wav"])
+    
 
     return(palabraEncontrada)
 
