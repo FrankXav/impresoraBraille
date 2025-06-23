@@ -36,7 +36,9 @@ GPIO.output(C4, GPIO.LOW)
     #print("No presionado") """
 
 def IniciarImpresion(channel):
+    global presionado
     presionado = True
+    return
 
 def DecirInstructivo(channel):
     subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Seccion1.wav"])
