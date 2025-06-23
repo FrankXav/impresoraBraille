@@ -35,10 +35,10 @@ GPIO.output(C4, GPIO.LOW)
     estado_BotImp = GPIO.input(botonImpresion)
     #print("No presionado") """
 
-def IniciarImpresion():
+def IniciarImpresion(channel):
     presionado = True
 
-def DecirInstructivo():
+def DecirInstructivo(channel):
     subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Seccion1.wav"])
     time.sleep(1)
     subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/listapalabras.wav"])
