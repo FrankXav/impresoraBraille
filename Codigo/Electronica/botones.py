@@ -49,8 +49,8 @@ def DecirInstructivo(channel):
     time.sleep(1)
     subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/FinalInst.wav"])
 
-GPIO.add_event_detect(botonImpresion, GPIO.RISING, callback=IniciarImpresion, bouncetime=300)
-GPIO.add_event_detect(botonIns, GPIO.RISING, callback=DecirInstructivo, bouncetime=300)
+GPIO.add_event_detect(botonImpresion, GPIO.FALLING, callback=IniciarImpresion, bouncetime=300)
+GPIO.add_event_detect(botonIns, GPIO.FALLING, callback=DecirInstructivo, bouncetime=300)
 
 
 while (not presionado):
