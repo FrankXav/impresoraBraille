@@ -32,7 +32,7 @@ subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Preparado.wav"])
 
 while(True):
 
-    subprocess.run(["python", "Electronica/botones.py"])
+    subprocess.run(["python3.6", "Electronica/botones.py"])
 
     #palabraReconocida = reconocimientodeVoz()
 

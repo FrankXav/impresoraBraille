@@ -42,6 +42,8 @@ def reconocimientodeVoz():
 
         #Algoritmo para encontrar la palabra con mayor simulitud a las opciones de reconocimiento
 
+        
+
         #En caso de que sea una frase, solo obtener la primera palabra para impresion
         palabras = [""]
 
