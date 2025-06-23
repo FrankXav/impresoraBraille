@@ -34,9 +34,9 @@ while(True):
 
     subprocess.run(["python3.6", "Electronica/botones.py"])
 
-    #palabraReconocida = reconocimientodeVoz()
+    palabraReconocida = reconocimientodeVoz()
 
-    palabraReconocida = "<<<<<"
+    #palabraReconocida = "<<<<<"
 
     if(palabraReconocida != ""):
 
