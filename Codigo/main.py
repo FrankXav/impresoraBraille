@@ -12,7 +12,7 @@ print("os.getcwd() desde imprimirTexto.py" + str(os.getcwd()))
 
 #subprocess.run(["tmux", "send-keys", "-t", "impresorabraille", "aplay ../../Audios/Introduccion.wav", "ENTER"])
 
-time.sleep(5)
+time.sleep(1)
 
 inicioFalso = subprocess.Popen(["arecord", "-D", "plughw:2,0", "-f", "S16_LE", "-r", "48000", "-c", "2","-d", "1", "falso.mp3"])
 
