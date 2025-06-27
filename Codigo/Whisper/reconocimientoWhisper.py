@@ -13,31 +13,62 @@ modelo = whisper.load_model("small")
 duracion = 3  # segundos
 archivo_salida = "/home/jetson/Documents/grabaciones/grabacion.wav"
 
-bancoPalabra = {"oficina" : [
-                "agenda",
-                "calculadora",
-                "carpeta",
-                "corrector",
-                "extintor",
-                "impresora",
-                "librero",
-                "organizador",
-                "pluma",
-                "sobre",
-                "archivero",
-                "cargador",
-                "cinta",
-                "escritorio",
-                "fólder",
-                "lápiz",
-                "marcador",
-                "perforadora",
-                "regla"
-            ]}
+bancoPalabras = {
+    "oficina": {"agenda":["agenda"],
+         "calculadora": ["calculadora"],
+         "carpeta": ["carpeta","carpita"],
+         "corrector": ["corrector", "correcto"],
+         "extintor":["extintor"],
+         "impresora": ["impresora"],
+         "librero": ["librero","libreero","libraro","librerojo","libreiro","libredom"],
+         "organizador": ["organizador"],
+         "pluma": ["pluma","bluma","loma","luma","blu"],
+         "sobre": ["sobre"],
+         "archivero": ["achíverón","archivero","achiveron","artíbero","artibero","activero","alcibero"],
+         "cargador": ["cargador"],
+         "cinta": ["cinta", "sinta", "finta"],
+         "escritorio": ["escritorio","escritorio"],
+         "fólder": ["fólder", "folder", "foldit"],
+         "marcador": ["marcador"],
+         "perforadora": ["perforadora"],
+         "regla": ["regla"]
+         }
+}
 
 palabraReconocida = ""
 
 palabraEncontrada = ""
+
+
+def validarPalabra(palabraCorrecta,palabraMal,dif):
+    
+    bandera = False
+
+    for i in range(len(palabraMal) + 1):
+
+        cantError = 10
+
+        indexAnt = i-1 if i-1 >= 0 else 0
+
+        palabraPrueba = palabraMal[0:indexAnt] + palabraMal[i:len(palabraMal)]
+
+        if (palabraCorrecta == palabraPrueba):
+            bandera = True
+        
+        else:
+            if(len(palabraPrueba) == len(palabraCorrecta)):
+                cantError = 0
+                for indP in range(len(palabraCorrecta)):
+                    if(palabraCorrecta[indP] != palabraPrueba[indP]):
+                        cantError = cantError + 1
+            
+                if(cantError < 2 ):
+                    bandera = True
+
+        if(dif - 1 > 0):
+            bandera = validarPalabra(palabraCorrecta,palabraPrueba,dif-1)
+
+    return bandera
 
 def reconocimientodeVoz():
 
@@ -48,7 +79,7 @@ def reconocimientodeVoz():
     #Reproducir audio indicando que comenzará a grabar
     time.sleep(1)
 
-    print("Grabando...")
+    subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/InicioGrabacion.wav"])
 
     while(intentos < 3):
 
@@ -56,19 +87,19 @@ def reconocimientodeVoz():
 
         palabraEncontrada = ""
 
-        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/InicioGrabacion.wav"])
-
         #confirmacion = input("Presione para grabar")
 
         #time.sleep(30)
 
         subprocess.run(["arecord", "-D", "plughw:2,0", "-f", "S16_LE", "-r", "48000", "-c", "2","-d", str(duracion),archivo_salida])
 
-        subprocess.run(["aplay", "-D", "hw:2,0", archivo_salida])
+        #subprocess.run(["aplay", "-D", "hw:2,0", archivo_salida])
 
         #Aplicar reconocimiento de voz a audio generado
 
         try:
+
+            #Audio comenzaremos con el reconocimiento
 
             resultado = modelo.transcribe(archivo_salida, language = 'es', initial_prompt ='Objetos en la oficina')
 
@@ -86,16 +117,62 @@ def reconocimientodeVoz():
                 palabraReconocida = palabras[0].lower()
 
                 #Caso no se reconocio la palabra
-                if(palabraReconocida == "Objetos"):
+                if(palabraReconocida == "objetos"):
                     intentos = intentos + 1
                     if(intentos < 3):
                         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/RepetirReconocimiento.wav"])
 
                 else:
+
+                    #Quitar caracteres no alphanumericos
+                    palabraReconocida = textoReconocido.replace(" ","")
+                    palabraReconocida = palabraReconocida.replace(",","")
+                    palabraReconocida = palabraReconocida.replace(".","")
+                    palabraReconocida = palabraReconocida.replace("!","")
+                    palabraReconocida = palabraReconocida.replace("?","")
+                    palabraReconocida = palabraReconocida.replace("_","")
+                    palabraReconocida = palabraReconocida.replace("¡","")
+
                     print("Palabra reconocida: " + str(palabraReconocida))
-                    for i in bancoPalabra["oficina"]:
+
+                    """for key,list in bancoPalabra["oficina"]:
                         if(palabraReconocida == i):
-                            palabraEncontrada = i
+                            palabraEncontrada = i """
+
+                    for key, value in bancoPalabras["oficina"].items():
+                        
+                        #Coincidencia exacta
+                        if(palabraReconocida == key):
+                            palabraEncontrada = key
+                        
+                        #Coincidencia en banco de palabras
+                        for i in value:
+                            if(palabraReconocida == i):
+                                palabraEncontrada = key
+
+                        #Palabra reconocida mas larga 
+
+                        if(len(palabraReconocida) > len(key)):
+                            diferencia =  len(palabraReconocida) - len(key)
+
+                            palabraMalPre = palabraReconocida.replace("á","a")
+                            palabraMalPre = palabraMalPre.replace("é","e")
+                            palabraMalPre = palabraMalPre.replace("í","i")
+                            palabraMalPre = palabraMalPre.replace("ó","o")
+                            palabraMalPre = palabraMalPre.replace("ú","u")
+
+                            palabraCorrectaPre = key.replace("á","a")
+                            palabraCorrectaPre = palabraCorrectaPre.replace("é","e")
+                            palabraCorrectaPre = palabraCorrectaPre.replace("í","i")
+                            palabraCorrectaPre = palabraCorrectaPre.replace("ó","o")
+                            palabraCorrectaPre = palabraCorrectaPre.replace("ú","u")
+
+                            coincidencia = validarPalabra(palabraCorrectaPre,palabraMalPre,diferencia)
+
+                            if(coincidencia):
+                                palabraEncontrada = key
+
+                            
                     
                     print("Palabra encontrada: " + palabraEncontrada )
                     if(palabraEncontrada != ""):
@@ -103,7 +180,27 @@ def reconocimientodeVoz():
                         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/palabras/"+palabraEncontrada+".wav"])
 
                         #Verificacion de la palabra
-                        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Verificacion.wav"])
+
+                        #Audio confirmación
+
+                        result = subprocess.run(["python3.6", "Electronica/botonesConf.py"], capture_output=True, text=True)
+
+                        confirmacion = result.stdout.strip()
+
+                        print("------------------ " + confirmacion)
+
+                        if(confirmacion == "si"):
+
+                            #Audio comenzaremos la impresion
+
+                            return(palabraEncontrada)
+                    
+                        else:
+                            intentos = intentos + 1
+                            if(intentos < 3):
+                                subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/RepetirReconocimiento.wav"])
+
+                        """ subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Verificacion.wav"])
 
                         subprocess.run(["arecord", "-D", "plughw:2,0", "-f", "S16_LE", "-r", "48000", "-c", "2","-d", str(duracion),archivo_salida])
 
@@ -121,29 +218,13 @@ def reconocimientodeVoz():
 
                         print("palabraReconocida: " + palabraReconocida)
 
-                        if(palabraReconocida == "si" or palabraReconocida == "sí" or palabraReconocida == "c"):
-                            return(palabraEncontrada)
-                        
-                        else:
-                            intentos = intentos + 1
-                            if(intentos < 3):
-                                subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/RepetirReconocimiento.wav"])
+                        if(palabraReconocida == "si" or palabraReconocida == "sí" or palabraReconocida == "c"): """
+                            
 
                     else:
                         intentos = intentos + 1
                         if(intentos < 3):
                             subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/RepetirReconocimiento.wav"])
-                    
-
-                #Algoritmo para encontrar la palabra con mayor simulitud a las opciones de reconocimiento
-
-                #Se pregunta se la palabra reconocida es la que quiere imprimir
-
-
-
-                #bancoEscritorio = ['Esescritorio', ]
-
-                #Se devuelve la palabra
 
 
             else:
