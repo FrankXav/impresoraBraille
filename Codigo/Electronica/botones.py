@@ -62,7 +62,12 @@ GPIO.add_event_detect(botonImpresion, GPIO.FALLING, callback=IniciarImpresion, b
 GPIO.add_event_detect(botonIns, GPIO.FALLING, callback=DecirInstructivo, bouncetime=500)
 
 
-while (not presionado):
-    time.sleep(1)
+try:
 
+    while (not presionado):
+        time.sleep(0.5)
+finally:
+
+    print("Limpiando GPIO...")
+    GPIO.cleanup()
 

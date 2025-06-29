@@ -44,7 +44,12 @@ def Negacion(channel):
 GPIO.add_event_detect(botonImpresion, GPIO.FALLING, callback=Confirmacion, bouncetime=500)
 GPIO.add_event_detect(botonIns, GPIO.FALLING, callback=Negacion, bouncetime=500)
 
+try:
 
-while (not presionado):
-    time.sleep(1)
+    while (not presionado):
+        time.sleep(0.5)
+
+finally: 
+    print("Limpiando GPIO...")
+    GPIO.cleanup()
 
