@@ -17,9 +17,9 @@ botonIns = 26
 GPIO.setup(botonImpresion, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(botonIns, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-""" while(GPIO.input(botonImpresion) == 1):
-    estado_BotImp = GPIO.input(botonImpresion)
-    #print("No presionado") """
+print("Espera boton confirmacion")
+
+presionado = True
 
 def Confirmacion(channel):
     global presionado
