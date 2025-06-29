@@ -185,6 +185,8 @@ def reconocimientodeVoz():
 
                         result = subprocess.run(["python3.6", "Electronica/botonesConf.py"], capture_output=True, text=True)
 
+                        print(result)
+
                         confirmacion = result.stdout.strip()
 
                         print("------------------ " + confirmacion)
