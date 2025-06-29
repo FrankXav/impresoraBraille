@@ -103,7 +103,7 @@ def reconocimientodeVoz():
 
             resultado = modelo.transcribe(archivo_salida, language = 'es', initial_prompt ='Objetos en la oficina')
 
-            textoReconocido = resultado['text'].lower()
+            textoReconocido = resultado['text']
 
             print(f"Texto: {textoReconocido}")
 
@@ -115,8 +115,6 @@ def reconocimientodeVoz():
                 palabras = textoReconocido.split()
 
                 palabraReconocida = palabras[0].lower()
-
-                print("palabraReconocida1: " + palabraReconocida)
 
                 #Caso no se reconocio la palabra
                 if(palabraReconocida == "objetos"):
@@ -143,7 +141,6 @@ def reconocimientodeVoz():
 
                     for key, value in bancoPalabras["oficina"].items():
                         
-
                         #Coincidencia exacta
                         if(palabraReconocida == key):
                             palabraEncontrada = key
