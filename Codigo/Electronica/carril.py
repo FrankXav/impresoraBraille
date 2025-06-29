@@ -44,14 +44,14 @@ def ejecutarCiclo(CW):
 
 def mover1mmDerecha():
     
-    for i in range(20):
+    for i in range(15):
         ejecutarCiclo(CW = True) 
         #time.sleep(0.1)
         
     
 def mover1mmIzquierda():
     
-    for i in range(20):
+    for i in range(15):
         ejecutarCiclo(CW = False) 
         
     

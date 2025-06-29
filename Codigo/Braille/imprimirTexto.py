@@ -11,31 +11,44 @@ from Electronica.impresionCaracter import *
 
 texto = sys.argv[1]
 
-print("Palabra a imprimir: " + str(texto))
+IRCinta = 31 
 
-arregloPalabra = transcripcionBraille(texto)
+GPIO.setup(IRCinta, GPIO.IN)
 
-iniciarCarril()
+estado_IR = GPIO.input(IRCinta)
 
-print("Posicion Inicial")
-time.sleep(5)
+if(estado_IR == 1):
 
-print("Comenzar impresion!!!")
 
-for caracter in arregloPalabra:
-    impresionCaracter(caracter)
+    print("Palabra a imprimir: " + str(texto))
 
-for i in range(20):
-    print("Mover Avance")
-    mover1mmDerechaAvance()
+    arregloPalabra = transcripcionBraille(texto)
 
-GPIO.output(C1, GPIO.LOW)
-GPIO.output(C2, GPIO.LOW)
-GPIO.output(C3, GPIO.LOW)
-GPIO.output(C4, GPIO.LOW)
+    iniciarCarril()
 
-GPIO.output(Q1, GPIO.LOW)
-GPIO.output(Q2, GPIO.LOW)
-GPIO.output(Q3, GPIO.LOW)
-GPIO.output(Q4, GPIO.LOW)
+    print("Posicion Inicial")
+    time.sleep(5)
 
+    print("Comenzar impresion!!!")
+
+    for caracter in arregloPalabra:
+        impresionCaracter(caracter)
+
+    for i in range(20):
+        print("Mover Avance")
+        mover1mmDerechaAvance()
+
+    GPIO.output(C1, GPIO.LOW)
+    GPIO.output(C2, GPIO.LOW)
+    GPIO.output(C3, GPIO.LOW)
+    GPIO.output(C4, GPIO.LOW)
+
+    GPIO.output(Q1, GPIO.LOW)
+    GPIO.output(Q2, GPIO.LOW)
+    GPIO.output(Q3, GPIO.LOW)
+    GPIO.output(Q4, GPIO.LOW)
+
+else: 
+    print("No hay cinta")
+
+    #TODO audio de no hay cinta
