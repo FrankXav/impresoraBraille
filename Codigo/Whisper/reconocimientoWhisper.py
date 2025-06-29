@@ -103,7 +103,7 @@ def reconocimientodeVoz():
 
             resultado = modelo.transcribe(archivo_salida, language = 'es', initial_prompt ='Objetos en la oficina')
 
-            textoReconocido = resultado['text']
+            textoReconocido = resultado['text'].lower()
 
             print(f"Texto: {textoReconocido}")
 
