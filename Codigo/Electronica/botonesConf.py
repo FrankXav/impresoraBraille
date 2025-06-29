@@ -9,7 +9,13 @@ import subprocess
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from Electronica.botones import *
+#from Electronica.botones import *
+
+botonImpresion = 29
+botonIns = 26
+
+GPIO.setup(botonImpresion, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(botonIns, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 """ while(GPIO.input(botonImpresion) == 1):
     estado_BotImp = GPIO.input(botonImpresion)
