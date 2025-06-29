@@ -116,6 +116,8 @@ def reconocimientodeVoz():
 
                 palabraReconocida = palabras[0].lower()
 
+                print("palabraReconocida1: " + palabraReconocida)
+
                 #Caso no se reconocio la palabra
                 if(palabraReconocida == "objetos"):
                     intentos = intentos + 1
@@ -125,7 +127,7 @@ def reconocimientodeVoz():
                 else:
 
                     #Quitar caracteres no alphanumericos
-                    palabraReconocida = textoReconocido.replace(" ","")
+                    palabraReconocida = textoReconocido.lower().replace(" ","")
                     palabraReconocida = palabraReconocida.replace(",","")
                     palabraReconocida = palabraReconocida.replace(".","")
                     palabraReconocida = palabraReconocida.replace("!","")
@@ -141,6 +143,7 @@ def reconocimientodeVoz():
 
                     for key, value in bancoPalabras["oficina"].items():
                         
+
                         #Coincidencia exacta
                         if(palabraReconocida == key):
                             palabraEncontrada = key
