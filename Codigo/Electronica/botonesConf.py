@@ -9,6 +9,9 @@ import subprocess
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+
 #from Electronica.botones import *
 
 botonImpresion = 29
