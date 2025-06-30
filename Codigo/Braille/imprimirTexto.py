@@ -35,8 +35,8 @@ if(estado_IR == 1):
 
     for indcaracter in range(len(arregloPalabra)):
         
-        print("index: " + str(indcaracter) + " index Inv: " + str(len(arregloPalabra) - indcaracter) )
-        impresionCaracter(arregloPalabra[len(arregloPalabra) - indcaracter])
+        print("index: " + str(indcaracter) + " index Inv: " + str(len(arregloPalabra) - indcaracter - 1) )
+        impresionCaracter(arregloPalabra[len(arregloPalabra) - indcaracter - 1])
 
     for i in range(20):
         print("Mover Avance")
