@@ -32,7 +32,7 @@ if(estado_IR == 1):
     print("Comenzar impresion!!!")
 
     for indcaracter in range(len(arregloPalabra)):
-        impresionCaracter(arregloPalabra(len(arregloPalabra) - indcaracter))
+        impresionCaracter(arregloPalabra[len(arregloPalabra) - indcaracter])
 
     for i in range(20):
         print("Mover Avance")
