@@ -27,12 +27,12 @@ if(estado_IR == 1):
     iniciarCarril()
 
     print("Posicion Inicial")
-    time.sleep(5)
+    #time.sleep(5)
 
     print("Comenzar impresion!!!")
 
-    for caracter in arregloPalabra:
-        impresionCaracter(caracter)
+    for indcaracter in range(len(arregloPalabra)):
+        impresionCaracter(arregloPalabra(len(arregloPalabra) - indcaracter))
 
     for i in range(20):
         print("Mover Avance")
