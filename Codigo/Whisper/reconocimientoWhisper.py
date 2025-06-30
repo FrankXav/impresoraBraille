@@ -95,7 +95,7 @@ def reconocimientodeVoz():
 
         #subprocess.run(["aplay", "-D", "hw:2,0", archivo_salida])
 
-        #Aplicar reconocimiento de voz a audio generado
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/InicioReconocimiento.wav"])
 
         try:
 
@@ -183,6 +183,8 @@ def reconocimientodeVoz():
 
                         #Audio confirmación
 
+                        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/VerificacionPalabra.wav"])
+
                         result = subprocess.run(["python3.6", "Electronica/botonesConf.py"], capture_output=True, text=True)
 
                         print(result)
@@ -194,6 +196,7 @@ def reconocimientodeVoz():
                         if("afirmativo" in confirmacion):
 
                             #Audio comenzaremos la impresion
+                            subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/ComenzarImpresion.mp3"])
 
                             return(palabraEncontrada)
                     
@@ -201,26 +204,6 @@ def reconocimientodeVoz():
                             intentos = intentos + 1
                             if(intentos < 3):
                                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/RepetirReconocimiento.wav"])
-
-                        """ subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Verificacion.wav"])
-
-                        subprocess.run(["arecord", "-D", "plughw:2,0", "-f", "S16_LE", "-r", "48000", "-c", "2","-d", str(duracion),archivo_salida])
-
-                        subprocess.run(["aplay", "-D", "hw:2,0", archivo_salida])
-
-                        resultado = modelo.transcribe(archivo_salida, language = 'es', initial_prompt ='Afirmación o Negación')
-
-                        textoReconocido = resultado['text']
-
-                        print("Texto afirmacion: " + textoReconocido)
-
-                        palabras = textoReconocido.split()
-
-                        palabraReconocida = palabras[0].lower()
-
-                        print("palabraReconocida: " + palabraReconocida)
-
-                        if(palabraReconocida == "si" or palabraReconocida == "sí" or palabraReconocida == "c"): """
                             
 
                     else:

@@ -41,8 +41,11 @@ while(True):
 
     if(palabraReconocida != ""):
 
-        subprocess.run(["python", "Braille/imprimirTexto.py", palabraReconocida])
         print("Se imprimira la palabra: " + str(palabraReconocida))
+        subprocess.run(["python", "Braille/imprimirTexto.py", palabraReconocida])
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/FinImpresion.mp3"])
+
+
 
     else:
         print("Ocurrio un error en el reconocimiento")
