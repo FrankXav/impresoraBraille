@@ -31,7 +31,11 @@ if(estado_IR == 1):
 
     print("Comenzar impresion!!!")
 
+    print("largo: " + str(len(arregloPalabra)))
+
     for indcaracter in range(len(arregloPalabra)):
+        
+        print("index: " + str(indcaracter) + " index Inv: " + str(len(arregloPalabra) - indcaracter) )
         impresionCaracter(arregloPalabra[len(arregloPalabra) - indcaracter])
 
     for i in range(20):
