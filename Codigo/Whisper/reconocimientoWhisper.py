@@ -191,7 +191,7 @@ def reconocimientodeVoz():
 
                         print("------------------ " + confirmacion)
 
-                        if(confirmacion == "si"):
+                        if("afirmativo" in confirmacion):
 
                             #Audio comenzaremos la impresion
 

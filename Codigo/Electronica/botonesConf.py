@@ -22,14 +22,14 @@ botonIns = 26
 GPIO.setup(botonImpresion, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(botonIns, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-print("Espera boton confirmacion")
+#print("Espera boton confirmacion")
 
-presionado = True
+presionado = False
 
 def Confirmacion(channel):
     global presionado
 
-    print("si")
+    print("afirmativo")
 
     presionado = True
     return
@@ -37,7 +37,7 @@ def Confirmacion(channel):
 def Negacion(channel):
     global presionado
 
-    print("no")
+    print("negativo")
 
     presionado = True
     return
