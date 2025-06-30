@@ -196,7 +196,7 @@ def reconocimientodeVoz():
                         if("afirmativo" in confirmacion):
 
                             #Audio comenzaremos la impresion
-                            subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/ComenzarImpresion.mp3"])
+                            subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/ComenzarImpresion.wav"])
 
                             return(palabraEncontrada)
                     

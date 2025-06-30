@@ -43,7 +43,7 @@ while(True):
 
         print("Se imprimira la palabra: " + str(palabraReconocida))
         subprocess.run(["python", "Braille/imprimirTexto.py", palabraReconocida])
-        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/FinImpresion.mp3"])
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/FinImpresion.wav"])
 
 
 
