@@ -12,6 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from Electronica.carril import *
 from Electronica.avanceCinta import *
+from Electronica.inicializarPines import * 
 
 botonImpresion = 29
 botonIns = 26
@@ -70,4 +71,5 @@ finally:
 
     print("Limpiando GPIO...")
     GPIO.cleanup()
+    Restaurarpines()
 

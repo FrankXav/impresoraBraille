@@ -14,6 +14,8 @@ GPIO.setmode(GPIO.BOARD)
 
 #from Electronica.botones import *
 
+from Electronica.inicializarPines import * 
+
 botonImpresion = 29
 botonIns = 26
 
@@ -52,4 +54,5 @@ try:
 finally: 
     print("Limpiando GPIO...")
     GPIO.cleanup()
+    Restaurarpines()
 

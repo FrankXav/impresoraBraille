@@ -58,7 +58,7 @@ def mover1mmIzquierdaAvance():
 
 while(True):
 
-    for i in range(20):
+    for i in range(2):
         mover1mmDerechaAvance()
 
     GPIO.output(C1, GPIO.LOW)
@@ -68,7 +68,7 @@ while(True):
 
     time.sleep(2)
 
-    for i in range(20):
+    for i in range(2):
         mover1mmIzquierdaAvance()
 
     GPIO.output(C1, GPIO.LOW)
