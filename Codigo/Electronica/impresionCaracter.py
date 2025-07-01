@@ -20,7 +20,7 @@ def impresionCaracter(arregloCaracter):
             else: 
                 posFila = fila
 
-            print("valor: " + str(arregloCaracter[columna][posFila]) + " columna: " + str(columna) + " fila: " + str(posFila))
+            print("valor: " + str(arregloCaracter[columna][posFila]) + " columna: " + str(columna) + " fila: " + str(posFila) + " valor: " + str(arregloCaracter[columna][posFila]))
 
             if(arregloCaracter[columna][posFila] == 1):
                 #print("Activar actuador")
@@ -43,7 +43,7 @@ def impresionCaracter(arregloCaracter):
                 mover1mmIzquierda()
                 
 
-            if(columna == 1 and posFila !=2):
+            if(columna == 1 and posFila !=0):
                 print("Mover derecha")
                 mover1mmDerecha()
                 mover1mmDerecha()
