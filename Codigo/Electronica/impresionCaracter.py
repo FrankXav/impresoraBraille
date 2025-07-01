@@ -46,7 +46,7 @@ def impresionCaracter(arregloCaracter):
                 mover1mmDerecha()
                 mover1mmDerecha()
             
-            time.sleep(0.2)
+            time.sleep(0.5)
 
         mover1mmDerechaAvance()
     
