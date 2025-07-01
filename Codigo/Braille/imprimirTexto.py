@@ -1,5 +1,6 @@
 import sys
 import os
+import subprocess
 
 #print("os.getcwd() desde imprimirTexto.py" + str(os.getcwd()))
 
@@ -59,4 +60,4 @@ if(estado_IR == 1 and estado_IRCarril == 1):
 else: 
     print("No hay cinta")
 
-    #TODO audio de no hay cinta
+    subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/FinalEtiqueta.wav"])
