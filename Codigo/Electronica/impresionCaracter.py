@@ -33,7 +33,7 @@ def impresionCaracter(arregloCaracter):
                 GPIO.output(actuador, GPIO.HIGH)
                 time.sleep(0.2)
 
-            if(columna == 0 and posFila !=2):
+            if(columna == 0 and posFila != 0):
                 print("Mover Izquierda")
                 mover1mmIzquierda()
                 mover1mmIzquierda()
@@ -43,7 +43,7 @@ def impresionCaracter(arregloCaracter):
                 mover1mmIzquierda()
                 
 
-            if(columna == 1 and posFila !=0):
+            if(columna == 1 and posFila != 2):
                 print("Mover derecha")
                 mover1mmDerecha()
                 mover1mmDerecha()
