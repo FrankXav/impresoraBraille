@@ -4,6 +4,7 @@ import os
 import sys
 import whisper
 import time
+import concurrent.futures
 
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -70,6 +71,9 @@ def validarPalabra(palabraCorrecta,palabraMal,dif):
 
     return bandera
 
+def transcribir(archivo):
+    return modelo.transcribe(archivo, language='es', initial_prompt='Objetos en la oficina')
+
 def reconocimientodeVoz():
 
     intentos = 0
@@ -100,10 +104,16 @@ def reconocimientodeVoz():
         try:
 
             #Audio comenzaremos con el reconocimiento
+            try:
+                with concurrent.futures.ThreadPoolExecutor() as executor:
+                    future = executor.submit(transcribir, archivo_salida)
+                    resultado = future.result(timeout=25)
+                    textoReconocido = resultado['text']
+                    print(f"Texto: {textoReconocido}")
 
-            resultado = modelo.transcribe(archivo_salida, language = 'es', initial_prompt ='Objetos en la oficina')
-
-            textoReconocido = resultado['text']
+            except concurrent.futures.TimeoutError:
+                print(f"Transcripción tardó más de {25} segundos. Abortando.")
+                textoReconocido = ""
 
             print(f"Texto: {textoReconocido}")
 
