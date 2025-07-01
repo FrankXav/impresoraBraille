@@ -23,12 +23,12 @@ def impresionCaracter(arregloCaracter):
                 GPIO.output(Q2, GPIO.LOW)
                 GPIO.output(Q3, GPIO.LOW)
                 GPIO.output(Q4, GPIO.LOW)
-                time.sleep(0.2)
+                time.sleep(0.1)
                 GPIO.output(actuador, GPIO.HIGH)
-                time.sleep(0.4)
+                time.sleep(0.2)
 
             if(columna == 0 and fila !=2):
-                #print("Mover Izquierda")
+                print("Mover Izquierda")
                 mover1mmIzquierda()
                 mover1mmIzquierda()
                 mover1mmIzquierda()
@@ -38,7 +38,7 @@ def impresionCaracter(arregloCaracter):
                 
 
             if(columna == 1 and fila !=2):
-                #print("Mover derecha")
+                print("Mover derecha")
                 mover1mmDerecha()
                 mover1mmDerecha()
                 mover1mmDerecha()
