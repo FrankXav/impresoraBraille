@@ -17,7 +17,7 @@ GPIO.setup(IRCinta, GPIO.IN)
 
 estado_IR = GPIO.input(IRCinta)
 
-if(estado_IR == 0):
+if(estado_IR == 1):
 
 
     print("Palabra a imprimir: " + str(texto))
