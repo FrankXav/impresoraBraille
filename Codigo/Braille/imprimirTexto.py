@@ -24,11 +24,11 @@ IRCarril = 32
 
 GPIO.setup(IRCarril, GPIO.IN)
 
-estado_IRCarril = GPIO.input(IRCinta)
+estado_IRCarril = GPIO.input(IRCarril)
 
 print("Estado IRCaril: " + str(estado_IRCarril))
 
-if(estado_IR == 1 and estado_IRCarril == 1):
+if(estado_IR == 0 and estado_IRCarril == 0):
 
     print("Palabra a imprimir: " + str(texto))
 
