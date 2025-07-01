@@ -107,12 +107,12 @@ def reconocimientodeVoz():
             try:
                 with concurrent.futures.ThreadPoolExecutor() as executor:
                     future = executor.submit(transcribir, archivo_salida)
-                    resultado = future.result(timeout=25)
+                    resultado = future.result(timeout=40)
                     textoReconocido = resultado['text']
                     print(f"Texto: {textoReconocido}")
 
             except concurrent.futures.TimeoutError:
-                print(f"Transcripción tardó más de {60} segundos. Abortando.")
+                print(f"Transcripción tardó más de 40 segundos. Abortando.")
                 textoReconocido = ""
 
             print(f"Texto: {textoReconocido}")
