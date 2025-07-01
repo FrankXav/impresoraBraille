@@ -14,7 +14,7 @@ def impresionCaracter(arregloCaracter):
     for columna in range(2):
         for fila in range(3):
 
-            #Invertir simpresión segunda columna
+            #Invertir simpresion segunda columna
             if(columna == 1):
                 posFila = 2 - fila
             else: 
