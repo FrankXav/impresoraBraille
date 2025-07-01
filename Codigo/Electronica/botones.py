@@ -49,13 +49,60 @@ def DecirInstructivo(channel):
 
     if( not ejeInstrucciones):
         ejeInstrucciones = True
-        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Seccion1.wav"])
+        """ subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Seccion1.wav"])
         time.sleep(1)
         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/listapalabras.wav"])
         time.sleep(1)
         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Seccion2.wav"])
         time.sleep(1)
-        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/FinalInst.wav"])
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/FinalInst.wav"]) """
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/IntroduccionManual.wav"])
+        time.sleep(1)
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion1.wav"])
+        contador = 0
+        while(contador < 200):
+            estado_BotImp = GPIO.input(botonIns)
+            if(estado_BotImp == 1):
+                subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion1Texto.wav"])
+                contador = 50
+            else:
+                time.sleep(0.1)
+                contador = contador + 1
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion2.wav"])
+        contador = 0
+        while(contador < 200):
+            estado_BotImp = GPIO.input(botonIns)
+            if(estado_BotImp == 1):
+                subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion2Texto.wav"])
+                contador = 50
+            else:
+                time.sleep(0.1)
+                contador = contador + 1
+
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion3.wav"])
+        contador = 0
+        while(contador < 200):
+            estado_BotImp = GPIO.input(botonIns)
+            if(estado_BotImp == 1):
+                subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion3Texto.wav"])
+                contador = 50
+            else:
+                time.sleep(0.1)
+                contador = contador + 1
+
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion4.wav"])
+        contador = 0
+        while(contador < 200):
+            estado_BotImp = GPIO.input(botonIns)
+            if(estado_BotImp == 1):
+                subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion4Texto.wav"])
+                contador = 50
+            else:
+                time.sleep(0.1)
+                contador = contador + 1
+
+        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/FinalManual.wav"])
+        time.sleep(1)
         ejeInstrucciones = False
 
 
