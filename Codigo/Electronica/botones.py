@@ -51,6 +51,7 @@ def DecirInstructivo(channel):
         ejeInstrucciones = True
 
         GPIO.remove_event_detect(botonIns)
+        GPIO.remove_event_detect(botonImpresion)
 
         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/IntroduccionManual.wav"])
         time.sleep(1)
@@ -99,9 +100,11 @@ def DecirInstructivo(channel):
 
         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/FinalManual.wav"])
         time.sleep(1)
-        GPIO.add_event_detect(botonIns, GPIO.FALLING, callback=DecirInstructivo, bouncetime=500)
-        ejeInstrucciones = False
         Restaurarpines()
+        GPIO.add_event_detect(botonIns, GPIO.FALLING, callback=DecirInstructivo, bouncetime=500)
+        GPIO.add_event_detect(botonImpresion, GPIO.FALLING, callback=IniciarImpresion, bouncetime=500)
+        ejeInstrucciones = False
+        
 
 
 GPIO.add_event_detect(botonImpresion, GPIO.FALLING, callback=IniciarImpresion, bouncetime=500)
