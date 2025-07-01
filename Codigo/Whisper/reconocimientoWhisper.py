@@ -112,7 +112,7 @@ def reconocimientodeVoz():
                     print(f"Texto: {textoReconocido}")
 
             except concurrent.futures.TimeoutError:
-                print(f"Transcripción tardó más de {25} segundos. Abortando.")
+                print(f"Transcripción tardó más de {60} segundos. Abortando.")
                 textoReconocido = ""
 
             print(f"Texto: {textoReconocido}")
