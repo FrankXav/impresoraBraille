@@ -14,9 +14,15 @@ def impresionCaracter(arregloCaracter):
     for columna in range(2):
         for fila in range(3):
 
-            print("valor: " + str(arregloCaracter[columna][fila]) + " columna: " + str(columna) + " fila: " + str(fila))
+            #Invertir simpresión segunda columna
+            if(columna == 1):
+                posFila = 2 - fila
+            else: 
+                posFila = fila
 
-            if(arregloCaracter[columna][fila] == 1):
+            print("valor: " + str(arregloCaracter[columna][posFila]) + " columna: " + str(columna) + " fila: " + str(posFila))
+
+            if(arregloCaracter[columna][posFila] == 1):
                 #print("Activar actuador")
                 GPIO.output(actuador, GPIO.LOW)
                 GPIO.output(Q1, GPIO.LOW)
@@ -27,7 +33,7 @@ def impresionCaracter(arregloCaracter):
                 GPIO.output(actuador, GPIO.HIGH)
                 time.sleep(0.2)
 
-            if(columna == 0 and fila !=2):
+            if(columna == 0 and posFila !=2):
                 print("Mover Izquierda")
                 mover1mmIzquierda()
                 mover1mmIzquierda()
@@ -37,7 +43,7 @@ def impresionCaracter(arregloCaracter):
                 mover1mmIzquierda()
                 
 
-            if(columna == 1 and fila !=2):
+            if(columna == 1 and posFila !=2):
                 print("Mover derecha")
                 mover1mmDerecha()
                 mover1mmDerecha()

@@ -17,8 +17,15 @@ GPIO.setup(IRCinta, GPIO.IN)
 
 estado_IR = GPIO.input(IRCinta)
 
-if(estado_IR == 1):
+IRCarril = 32 
 
+GPIO.setup(IRCarril, GPIO.IN)
+
+estado_IRCarril = GPIO.input(IRCinta)
+
+print("Estado IRCaril: " + str(estado_IRCarril))
+
+if(estado_IR == 0):
 
     print("Palabra a imprimir: " + str(texto))
 
@@ -27,16 +34,11 @@ if(estado_IR == 1):
     iniciarCarril()
 
     print("Posicion Inicial")
-    #time.sleep(5)
 
     print("Comenzar impresion!!!")
 
-    print("largo: " + str(len(arregloPalabra)))
-
-    for indcaracter in range(len(arregloPalabra)):
-        
-        print("index: " + str(indcaracter) + " index Inv: " + str(len(arregloPalabra) - indcaracter - 1) )
-        impresionCaracter(arregloPalabra[len(arregloPalabra) - indcaracter - 1])
+    for caracter in arregloPalabra:
+        impresionCaracter(caracter)
 
     for i in range(20):
         print("Mover Avance")
