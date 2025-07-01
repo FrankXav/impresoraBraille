@@ -60,43 +60,43 @@ def DecirInstructivo(channel):
         time.sleep(1)
         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion1.wav"])
         contador = 0
-        while(contador < 200):
+        while(contador < 100):
             estado_BotImp = GPIO.input(botonIns)
             if(estado_BotImp == 0):
                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion1Texto.wav"])
-                contador = 50
+                contador = 500
             else:
                 time.sleep(0.1)
                 contador = contador + 1
         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion2.wav"])
         contador = 0
-        while(contador < 200):
+        while(contador < 100):
             estado_BotImp = GPIO.input(botonIns)
             if(estado_BotImp == 0):
                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion2Texto.wav"])
-                contador = 50
+                contador = 500
             else:
                 time.sleep(0.1)
                 contador = contador + 1
 
         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion3.wav"])
         contador = 0
-        while(contador < 200):
+        while(contador < 100):
             estado_BotImp = GPIO.input(botonIns)
             if(estado_BotImp == 0):
                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion3Texto.wav"])
-                contador = 50
+                contador = 500
             else:
                 time.sleep(0.1)
                 contador = contador + 1
 
         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion4.wav"])
         contador = 0
-        while(contador < 200):
+        while(contador < 100):
             estado_BotImp = GPIO.input(botonIns)
             if(estado_BotImp == 0):
                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion4Texto.wav"])
-                contador = 50
+                contador = 500
             else:
                 time.sleep(0.1)
                 contador = contador + 1
@@ -104,6 +104,7 @@ def DecirInstructivo(channel):
         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/FinalManual.wav"])
         time.sleep(1)
         ejeInstrucciones = False
+        Restaurarpines()
 
 
 GPIO.add_event_detect(botonImpresion, GPIO.FALLING, callback=IniciarImpresion, bouncetime=500)
