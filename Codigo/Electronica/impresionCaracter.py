@@ -67,6 +67,6 @@ def impresionCaracter(arregloCaracter):
     GPIO.output(C3, GPIO.LOW)
     GPIO.output(C4, GPIO.LOW)
 
-    time.sleep(0.2)
+    time.sleep(0.5)
                 
                 
