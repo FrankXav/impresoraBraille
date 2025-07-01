@@ -57,7 +57,7 @@ def DecirInstructivo(channel):
         time.sleep(1)
         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion1.wav"])
         contador = 0
-        while(contador < 100):
+        while(contador < 50):
             estado_BotImp = GPIO.input(botonIns)
             if(estado_BotImp == 0):
                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion1Texto.wav"])
@@ -67,7 +67,7 @@ def DecirInstructivo(channel):
                 contador = contador + 1
         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion2.wav"])
         contador = 0
-        while(contador < 100):
+        while(contador < 50):
             estado_BotImp = GPIO.input(botonIns)
             if(estado_BotImp == 0):
                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion2Texto.wav"])
@@ -78,7 +78,7 @@ def DecirInstructivo(channel):
 
         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion3.wav"])
         contador = 0
-        while(contador < 100):
+        while(contador < 50):
             estado_BotImp = GPIO.input(botonIns)
             if(estado_BotImp == 0):
                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion3Texto.wav"])
@@ -89,7 +89,7 @@ def DecirInstructivo(channel):
 
         subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion4.wav"])
         contador = 0
-        while(contador < 100):
+        while(contador < 50):
             estado_BotImp = GPIO.input(botonIns)
             if(estado_BotImp == 0):
                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion4Texto.wav"])
