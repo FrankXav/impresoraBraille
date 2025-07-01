@@ -62,7 +62,7 @@ def DecirInstructivo(channel):
         contador = 0
         while(contador < 200):
             estado_BotImp = GPIO.input(botonIns)
-            if(estado_BotImp == 1):
+            if(estado_BotImp == 0):
                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion1Texto.wav"])
                 contador = 50
             else:
@@ -72,7 +72,7 @@ def DecirInstructivo(channel):
         contador = 0
         while(contador < 200):
             estado_BotImp = GPIO.input(botonIns)
-            if(estado_BotImp == 1):
+            if(estado_BotImp == 0):
                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion2Texto.wav"])
                 contador = 50
             else:
@@ -83,7 +83,7 @@ def DecirInstructivo(channel):
         contador = 0
         while(contador < 200):
             estado_BotImp = GPIO.input(botonIns)
-            if(estado_BotImp == 1):
+            if(estado_BotImp == 0):
                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion3Texto.wav"])
                 contador = 50
             else:
@@ -94,7 +94,7 @@ def DecirInstructivo(channel):
         contador = 0
         while(contador < 200):
             estado_BotImp = GPIO.input(botonIns)
-            if(estado_BotImp == 1):
+            if(estado_BotImp == 0):
                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Manual/Seccion4Texto.wav"])
                 contador = 50
             else:
