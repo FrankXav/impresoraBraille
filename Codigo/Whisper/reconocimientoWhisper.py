@@ -2,17 +2,23 @@
 import subprocess
 import os
 import sys
-import whisper
 import time
-import concurrent.futures
+import multiprocessing
+import time
+import uuid
 
+from Whisper.transcripcion import *
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-modelo = whisper.load_model("small")
-
 duracion = 3  # segundos
 archivo_salida = "/home/jetson/Documents/grabaciones/grabacion.wav"
+
+entradaTranscripcion = multiprocessing.Queue()
+salidaTranscripcion = multiprocessing.Queue()
+
+proceso = multiprocessing.Process(target=loop_reconocimiento, args=(entradaTranscripcion, salidaTranscripcion))
+proceso.start()
 
 bancoPalabras = {
     "oficina": {"agenda":["agenda"],
@@ -71,8 +77,6 @@ def validarPalabra(palabraCorrecta,palabraMal,dif):
 
     return bandera
 
-def transcribir(archivo):
-    return modelo.transcribe(archivo, language='es', initial_prompt='Objetos en la oficina')
 
 def reconocimientodeVoz():
 
@@ -105,29 +109,18 @@ def reconocimientodeVoz():
 
             timeout_segundos = 40
 
-            #Audio comenzaremos con el reconocimiento
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                future = executor.submit(transcribir, archivo_salida)
+            uid = str(uuid.uuid4())
+            entradaTranscripcion.put({"archivo": archivo_salida, "uid": uid})
 
-                start = time.time()
-                tiempo_transcurrido = 0
+            textoReconocido = ""
 
-                while True:
-                    if future.done():
-                        resultado = future.result()
-                        textoReconocido = resultado['text']
-                        print(f"\n Transcripción terminada en {tiempo_transcurrido} segundos.")
-                        print(f"Texto: {textoReconocido}")
-                        break
-
-                    if tiempo_transcurrido >= timeout_segundos:
-                        future.cancel()
-                        print(f"\n Tiempo agotado ({timeout_segundos}s). Se canceló la transcripción.")
-                        break
-
-                    print(f"Esperando... {tiempo_transcurrido} segundos", end="\r")
-                    time.sleep(1)
-                    tiempo_transcurrido = int(time.time() - start)
+            start = time.time()
+            while time.time() - start < timeout_segundos:
+                while not salidaTranscripcion.empty():
+                    resultado = salidaTranscripcion.get()
+                    if resultado["uid"] == uid:
+                        textoReconocido = resultado["texto"]
+                time.sleep(0.5)
 
             print(f"Texto: {textoReconocido}")
 

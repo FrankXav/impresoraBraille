@@ -35,7 +35,19 @@ while(True):
 
     subprocess.run(["python3.6", "Electronica/botones.py"])
 
-    palabraReconocida = reconocimientodeVoz()
+    result = subprocess.run(["python3.6", "Electronica/estadoSensores.py"], capture_output=True, text=True)
+
+    print(result)
+
+    confirmacion = result.stdout.strip()
+
+    print("------------------ " + confirmacion)
+
+    palabraReconocida = ""
+
+    if("correcto" in confirmacion):
+
+        palabraReconocida = reconocimientodeVoz()
 
     #palabraReconocida = "<<<<<"
 
