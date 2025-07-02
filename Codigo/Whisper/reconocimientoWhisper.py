@@ -72,6 +72,7 @@ def validarPalabra(palabraCorrecta,palabraMal,dif):
     return bandera
 
 def transcribir(archivo, conn):
+    print("Comenzar reconocimiento!!")
     resultado = modelo.transcribe(archivo, language='es', initial_prompt='Objetos en la oficina')
     conn.send(resultado['text'])
     conn.close()
