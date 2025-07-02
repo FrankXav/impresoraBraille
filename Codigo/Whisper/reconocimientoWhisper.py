@@ -4,7 +4,7 @@ import os
 import sys
 import whisper
 import time
-import multiprocessing
+import concurrent.futures
 
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -71,11 +71,8 @@ def validarPalabra(palabraCorrecta,palabraMal,dif):
 
     return bandera
 
-def transcribir(archivo, conn):
-    print("Comenzar reconocimiento!!")
-    resultado = modelo.transcribe(archivo, language='es', initial_prompt='Objetos en la oficina')
-    conn.send(resultado['text'])
-    conn.close()
+def transcribir(archivo):
+    return modelo.transcribe(archivo, language='es', initial_prompt='Objetos en la oficina')
 
 def reconocimientodeVoz():
 
@@ -108,33 +105,29 @@ def reconocimientodeVoz():
 
             timeout_segundos = 40
 
-            # Creamos un pipe para comunicarnos con el proceso hijo
-            parent_conn, child_conn = multiprocessing.Pipe()
+            #Audio comenzaremos con el reconocimiento
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                future = executor.submit(transcribir, archivo_salida)
 
-            # Proceso de transcripción
-            p = multiprocessing.Process(target=transcribir, args=(archivo_salida, child_conn))
-            p.start()
+                start = time.time()
+                tiempo_transcurrido = 0
 
-            start = time.time()
-            tiempo_transcurrido = 0
+                while True:
+                    if future.done():
+                        resultado = future.result()
+                        textoReconocido = resultado['text']
+                        print(f"\n Transcripción terminada en {tiempo_transcurrido} segundos.")
+                        print(f"Texto: {textoReconocido}")
+                        break
 
-            while p.is_alive():
-                print(f"Esperando... {tiempo_transcurrido} segundos", end="\r")
-                time.sleep(1)
-                tiempo_transcurrido = int(time.time() - start)
+                    if tiempo_transcurrido >= timeout_segundos:
+                        future.cancel()
+                        print(f"\n Tiempo agotado ({timeout_segundos}s). Se canceló la transcripción.")
+                        break
 
-                if tiempo_transcurrido >= timeout_segundos:
-                    p.terminate()
-                    print(f"\nTiempo agotado ({timeout_segundos}s). Se terminó el proceso de transcripción.")
-                    break
-
-            # Si el proceso terminó antes del tiempo límite
-            if parent_conn.poll():
-                textoReconocido = parent_conn.recv()
-                print(f"\nTranscripción terminada en {tiempo_transcurrido} segundos.")
-                print(f"Texto: {textoReconocido}")
-            else:
-                textoReconocido = ""
+                    print(f"Esperando... {tiempo_transcurrido} segundos", end="\r")
+                    time.sleep(1)
+                    tiempo_transcurrido = int(time.time() - start)
 
             print(f"Texto: {textoReconocido}")
 
