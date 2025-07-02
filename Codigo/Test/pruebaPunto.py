@@ -48,20 +48,19 @@ def ejecutarCicloAvance(CW):
 
 def mover1mmDerechaAvance():
     
-    for i in range(30):
+    for i in range(2):
         ejecutarCicloAvance(CW = True) 
         #time.sleep(0.1)
         
     
 def mover1mmIzquierdaAvance():
     
-    for i in range(30):
+    for i in range(2):
         ejecutarCicloAvance(CW = False) 
 
 while(True):
 
-    for i in range(2):
-        mover1mmDerechaAvance()
+    mover1mmIzquierdaAvance()
 
     GPIO.output(C1, GPIO.LOW)
     GPIO.output(C2, GPIO.LOW)
