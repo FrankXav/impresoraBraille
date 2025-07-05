@@ -108,7 +108,7 @@ def reconocimientodeVoz():
 
         try:
 
-            timeout_segundos = 20
+            timeout_segundos = 15
 
             uid = str(uuid.uuid4())
             entradaTranscripcion.put({"archivo": archivo_salida, "uid": uid})
