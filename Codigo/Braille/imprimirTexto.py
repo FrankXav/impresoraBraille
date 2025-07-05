@@ -43,7 +43,7 @@ if(estado_IR == 0 and estado_IRCarril == 0):
     for caracter in arregloPalabra:
         impresionCaracter(caracter)
 
-    for i in range(30):
+    for i in range(28):
         #print("Mover Avance")
         mover1mmDerechaAvance()
 

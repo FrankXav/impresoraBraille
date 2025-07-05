@@ -1,24 +1,45 @@
-import whisper
-import multiprocessing
-import time
+# transcriptor.py  (lanzar una vez y permanecer vivo)
+import multiprocessing as mp
+import whisper, signal, os
 
-def loop_reconocimiento(entrada, salida):
+# ---------- 1. inicializador ----------
+def init_model():
+    global model
+    model = whisper.load_model("base")   # Carga única
 
-    modelo = whisper.load_model("base")  
+# ---------- 2. función de transcripción ----------
+def _transcribe(path):
+    return model.transcribe(
+        path, language='es',
+        initial_prompt='Objetos en la oficina'
+    )['text']
+
+# ---------- 3. worker principal ----------
+def loop_reconocimiento(entrada, salida, timeout=20):
+    pool = mp.get_context("spawn").Pool(
+        processes=1, initializer=init_model
+    )
 
     while True:
-        tarea = entrada.get()  # Espera nueva tarea
+        tarea = entrada.get()
         if tarea == "salir":
-            print("Cerrando proceso de transcripción.")
+            pool.close()
+            pool.join()
             break
 
-        archivo = tarea.get("archivo")
-        uid = tarea.get("uid")
+        uid, archivo = tarea["uid"], tarea["archivo"]
+        async_result = pool.apply_async(_transcribe, (archivo,))
 
         try:
-            resultado = modelo.transcribe(archivo, language='es', initial_prompt='Objetos en la oficina')
-            texto = resultado['text']
-        except Exception as e:
-            texto = f"ERROR: {str(e)}"
+            texto = async_result.get(timeout=timeout)
+        except mp.TimeoutError:
+            # Cancela futura respuesta y reinicia el pool
+            async_result.cancel()
+            pool.terminate()      # mata al hijo atascado
+            pool.join()
+            pool = mp.get_context("spawn").Pool(
+                processes=1, initializer=init_model
+            )
+            texto = "ERROR: tiempo de reconocimiento agotado"
 
         salida.put({"uid": uid, "texto": texto})

@@ -116,11 +116,19 @@ def reconocimientodeVoz():
 
             start = time.time()
             while time.time() - start < timeout_segundos:
-                while not salidaTranscripcion.empty():
+                """ while not salidaTranscripcion.empty():
                     resultado = salidaTranscripcion.get()
                     if resultado["uid"] == uid:
                         textoReconocido = resultado["texto"]
-                time.sleep(0.5)
+                time.sleep(0.5) """
+
+                try:
+                    res = salidaTranscripcion.get_nowait()
+                    if res["uid"] == uid:
+                        textoReconocido = res["texto"]
+                except multiprocessing.queue.Empty:
+                    time.sleep(0.2)
+
 
             print(f"Texto: {textoReconocido}")
 
