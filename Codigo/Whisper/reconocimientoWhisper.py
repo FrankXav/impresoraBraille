@@ -234,6 +234,10 @@ def reconocimientodeVoz():
 
             else:
                 intentos = intentos + 1
+                proceso.terminate()
+                proceso.join()
+                proceso = multiprocessing.Process(target=loop_reconocimiento, args=(entradaTranscripcion, salidaTranscripcion))
+                proceso.start()
                 if(intentos < 3):
                     subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/RepetirReconocimiento.wav"])
 
