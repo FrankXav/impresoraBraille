@@ -247,6 +247,7 @@ def reconocimientodeVoz():
 
     
 
-
+entradaTranscripcion.put("salir")
+proceso.join()
 
     
