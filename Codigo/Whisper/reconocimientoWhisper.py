@@ -79,6 +79,8 @@ def validarPalabra(palabraCorrecta,palabraMal,dif):
 
 def reconocimientodeVoz():
 
+    global proceso
+
     intentos = 0
 
     textoReconocido = ""
@@ -119,6 +121,7 @@ def reconocimientodeVoz():
                     resultado = salidaTranscripcion.get()
                     if resultado["uid"] == uid:
                         textoReconocido = resultado["texto"]
+                        break
                 time.sleep(0.5)
 
             print(f"Texto: {textoReconocido}")
