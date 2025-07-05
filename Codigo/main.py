@@ -65,5 +65,6 @@ try:
             print("Ocurrio un error en el reconocimiento")
 
 except:
+
     entradaTranscripcion.put("salir")
     proceso.join()
