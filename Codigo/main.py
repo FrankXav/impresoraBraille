@@ -64,7 +64,7 @@ try:
         else:
             print("Ocurrio un error en el reconocimiento")
 
-except:
-
+except Exception as e:
+    print(e)
     entradaTranscripcion.put("salir")
     proceso.join()

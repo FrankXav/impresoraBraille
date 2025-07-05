@@ -4,7 +4,6 @@ import os
 import sys
 import time
 import multiprocessing
-import time
 import uuid
 
 from Whisper.transcripcion import *
@@ -240,25 +239,13 @@ def reconocimientodeVoz():
         except:
             subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/ErrorReconocimiento.wav"])
             entradaTranscripcion.put("salir")
-            entradaTranscripcion.close()  
-            entradaTranscripcion.join_thread()
-            salidaTranscripcion.close()   
-            salidaTranscripcion.join_thread()
             proceso.join()
-            entradaTranscripcion = multiprocessing.Queue()
-            salidaTranscripcion = multiprocessing.Queue()
             proceso = multiprocessing.Process(target=loop_reconocimiento, args=(entradaTranscripcion, salidaTranscripcion))
             proceso.start()
 
     subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/ErrorReconocimiento.wav"])
     entradaTranscripcion.put("salir")
-    entradaTranscripcion.close()  
-    entradaTranscripcion.join_thread()
-    salidaTranscripcion.close()   
-    salidaTranscripcion.join_thread()
     proceso.join()
-    entradaTranscripcion = multiprocessing.Queue()
-    salidaTranscripcion = multiprocessing.Queue()
     proceso = multiprocessing.Process(target=loop_reconocimiento, args=(entradaTranscripcion, salidaTranscripcion))
     proceso.start()
     
