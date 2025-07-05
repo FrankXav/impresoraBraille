@@ -31,33 +31,39 @@ from Whisper.reconocimientoWhisper import *
 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/Preparado.wav"])
 
 
-while(True):
+try:
 
-    subprocess.run(["python3.6", "Electronica/botones.py"])
+    while(True):
 
-    result = subprocess.run(["python3.6", "Electronica/estadoSensores.py"], capture_output=True, text=True)
+        subprocess.run(["python3.6", "Electronica/botones.py"])
 
-    print(result)
+        result = subprocess.run(["python3.6", "Electronica/estadoSensores.py"], capture_output=True, text=True)
 
-    confirmacion = result.stdout.strip()
+        print(result)
 
-    print("------------------ " + confirmacion)
+        confirmacion = result.stdout.strip()
 
-    palabraReconocida = ""
+        print("------------------ " + confirmacion)
 
-    if("correcto" in confirmacion):
+        palabraReconocida = ""
 
-        palabraReconocida = reconocimientodeVoz()
+        if("correcto" in confirmacion):
 
-    #palabraReconocida = "<<<<<"
+            palabraReconocida = reconocimientodeVoz()
 
-    if(palabraReconocida != ""):
+        #palabraReconocida = "<<<<<"
 
-        print("Se imprimira la palabra: " + str(palabraReconocida))
-        subprocess.run(["python", "Braille/imprimirTexto.py", palabraReconocida])
-        subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/FinImpresion.wav"])
+        if(palabraReconocida != ""):
+
+            print("Se imprimira la palabra: " + str(palabraReconocida))
+            subprocess.run(["python", "Braille/imprimirTexto.py", palabraReconocida])
+            subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/FinImpresion.wav"])
 
 
 
-    else:
-        print("Ocurrio un error en el reconocimiento")
+        else:
+            print("Ocurrio un error en el reconocimiento")
+
+except:
+    entradaTranscripcion.put("salir")
+    proceso.join()
