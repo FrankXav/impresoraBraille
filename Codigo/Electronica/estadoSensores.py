@@ -4,6 +4,9 @@ import subprocess
 import Jetson.GPIO as GPIO
 import time
 
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+
 IRCinta = 31 
 
 GPIO.setup(IRCinta, GPIO.IN)
