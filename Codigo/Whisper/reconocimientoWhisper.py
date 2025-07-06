@@ -89,6 +89,7 @@ def reconocimientodeVoz():
     time.sleep(1)
 
     subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/InicioGrabacion.wav"])
+    subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/tono.wav"])
 
     while(intentos < 3):
 
@@ -224,12 +225,14 @@ def reconocimientodeVoz():
                             intentos = intentos + 1
                             if(intentos < 3):
                                 subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/RepetirReconocimiento.wav"])
+                                subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/tono.wav"])
                             
 
                     else:
                         intentos = intentos + 1
                         if(intentos < 3):
                             subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/RepetirReconocimiento.wav"])
+                            subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/tono.wav"])
 
 
             else:
@@ -240,18 +243,19 @@ def reconocimientodeVoz():
                 proceso.start()
                 if(intentos < 3):
                     subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/RepetirReconocimiento.wav"])
+                    subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/tono.wav"])
 
             
         
         except:
             subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/ErrorReconocimiento.wav"])
-            entradaTranscripcion.put("salir")
+            proceso.terminate()
             proceso.join()
             proceso = multiprocessing.Process(target=loop_reconocimiento, args=(entradaTranscripcion, salidaTranscripcion))
             proceso.start()
 
     subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/ErrorReconocimiento.wav"])
-    entradaTranscripcion.put("salir")
+    proceso.terminate()
     proceso.join()
     proceso = multiprocessing.Process(target=loop_reconocimiento, args=(entradaTranscripcion, salidaTranscripcion))
     proceso.start()

@@ -21,11 +21,11 @@ estado_IRCarril = GPIO.input(IRCarril)
 
 
 if(estado_IR == 1):
-    #TODO  No hay cita en el porta cinta
+    subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/SinCinta.wav"])
     print("negativo")
 
 if(estado_IRCarril == 1):
-    #TODO Audio no hay cinta en el carril o no esta acomodada
+    subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/SinPosicion.wav"])
     print("negativo")
 
 if(estado_IR == 0 and estado_IRCarril == 0):
