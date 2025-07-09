@@ -7,13 +7,13 @@ import time
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 
-IRCinta = 31 
+IRCinta = 32 
 
 GPIO.setup(IRCinta, GPIO.IN)
 
 estado_IR = GPIO.input(IRCinta)
 
-IRCarril = 32 
+IRCarril = 31 
 
 GPIO.setup(IRCarril, GPIO.IN)
 
