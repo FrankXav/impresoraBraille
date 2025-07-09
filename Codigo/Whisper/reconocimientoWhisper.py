@@ -34,7 +34,7 @@ bancoPalabras = {
          "cargador": ["cargador"],
          "cinta": ["cinta", "sinta", "finta"],
          "escritorio": ["escritorio","escritorio"],
-         "fólder": ["fólder", "folder", "foldit"],
+         "folder": ["fólder", "folder", "foldit"],
          "marcador": ["marcador"],
          "perforadora": ["perforadora"],
          "regla": ["regla"]
