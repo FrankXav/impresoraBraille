@@ -254,11 +254,15 @@ def reconocimientodeVoz():
             proceso = multiprocessing.Process(target=loop_reconocimiento, args=(entradaTranscripcion, salidaTranscripcion))
             proceso.start()
 
+    print("Falla los tres intentos!!")
     subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/ErrorReconocimiento.wav"])
     proceso.terminate()
     proceso.join()
+    print("Termina proceso")
+    print("Inicia proceso!!")
     proceso = multiprocessing.Process(target=loop_reconocimiento, args=(entradaTranscripcion, salidaTranscripcion))
     proceso.start()
+    print("Proceso Listo!!")
     
 
     return(palabraEncontrada)
