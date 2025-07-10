@@ -16,9 +16,6 @@ archivo_salida = "/home/jetson/Documents/grabaciones/grabacion.wav"
 entradaTranscripcion = multiprocessing.Queue()
 salidaTranscripcion = multiprocessing.Queue()
 
-proceso = multiprocessing.Process(target=loop_reconocimiento, args=(entradaTranscripcion, salidaTranscripcion))
-proceso.start()
-
 bancoPalabras = {
     "oficina": {"agenda":["agenda"],
          "calculadora": ["calculadora"],
@@ -37,7 +34,7 @@ bancoPalabras = {
          "folder": ["fólder", "folder", "foldit"],
          "marcador": ["marcador"],
          "perforadora": ["perforadora"],
-         "regla": ["regla"]
+         "regla": ["regla", "recla"]
          }
 }
 
@@ -79,7 +76,10 @@ def validarPalabra(palabraCorrecta,palabraMal,dif):
 
 def reconocimientodeVoz():
 
-    global proceso
+    global proceso, entradaTranscripcion, salidaTranscripcion
+
+    proceso = multiprocessing.Process(target=loop_reconocimiento, args=(entradaTranscripcion, salidaTranscripcion))
+    proceso.start()
 
     intentos = 0
 
@@ -258,11 +258,7 @@ def reconocimientodeVoz():
     subprocess.run(["aplay", "-D", "plughw:2,0", "../../Audios/ErrorReconocimiento.wav"])
     proceso.terminate()
     proceso.join()
-    print("Termina proceso")
-    print("Inicia proceso!!")
-    proceso = multiprocessing.Process(target=loop_reconocimiento, args=(entradaTranscripcion, salidaTranscripcion))
-    proceso.start()
-    print("Proceso Listo!!")
+    entradaTranscripcion.put("salir")
     
 
     return(palabraEncontrada)
