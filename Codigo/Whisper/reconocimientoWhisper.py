@@ -13,9 +13,6 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 duracion = 3  # segundos
 archivo_salida = "/home/jetson/Documents/grabaciones/grabacion.wav"
 
-entradaTranscripcion = multiprocessing.Queue()
-salidaTranscripcion = multiprocessing.Queue()
-
 bancoPalabras = {
     "oficina": {"agenda":["agenda"],
          "calculadora": ["calculadora"],
@@ -34,7 +31,7 @@ bancoPalabras = {
          "folder": ["fólder", "folder", "foldit"],
          "marcador": ["marcador"],
          "perforadora": ["perforadora"],
-         "regla": ["regla", "recla"]
+         "regla": ["regla", "recla","redla"]
          }
 }
 
@@ -77,6 +74,9 @@ def validarPalabra(palabraCorrecta,palabraMal,dif):
 def reconocimientodeVoz():
 
     global proceso, entradaTranscripcion, salidaTranscripcion
+
+    entradaTranscripcion = multiprocessing.Queue()
+    salidaTranscripcion = multiprocessing.Queue()
 
     proceso = multiprocessing.Process(target=loop_reconocimiento, args=(entradaTranscripcion, salidaTranscripcion))
     proceso.start()
